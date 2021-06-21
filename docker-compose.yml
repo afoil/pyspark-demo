@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+    app:
+        image: jupyter/pyspark-notebook:ubuntu-20.04
+        environment:
+            - PORT=${PORT}
+            - PYSPARK_DRIVER_PYTHON=${PYSPARK_DRIVER_PYTHON}
+            - PYSPARK_DRIVER_PYTHON_OPTS=${PYSPARK_DRIVER_PYTHON_OPTS}
+        ports:
+            - ${PORT}:${PORT}
+        volumes:
+            - ./work:/home/jovyan/work
+        command: ["sh", "-c", "/usr/local/spark/bin/pyspark"]
